@@ -1,0 +1,20 @@
+{
+    "name": "homiedopie/simple-mvc",
+    "description": "Simple mvc",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Michael Mantos",
+            "email": "miko.mantos@gmail.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Homiedopie\\": "src/"
+        }
+    }
+}

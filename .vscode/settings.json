@@ -1,0 +1,8 @@
+{
+  "files.eol": "\n",
+  "files.trimTrailingWhitespace": true,
+  "editor.detectIndentation": true,
+  "editor.tabSize": 4,
+  "phpcs.standard": "PSR2",
+  "php.suggest.basic": false
+}
