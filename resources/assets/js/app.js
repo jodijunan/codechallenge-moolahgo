@@ -5,9 +5,11 @@
  */
 import './bootstrap';
 import './../sass/_bootstrap.scss';
+
 import Vue from 'vue';
 import App from './App.vue';
 import CalculatorForm from './components/CalculatorForm.vue';
+import RecordList from './components/RecordList.vue';
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -15,6 +17,8 @@ import CalculatorForm from './components/CalculatorForm.vue';
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 Vue.component('CalculatorForm', CalculatorForm);
+Vue.component('RecordList', RecordList);
+
 const app = new Vue({
     el: '#app',
     template : '<app></app>',

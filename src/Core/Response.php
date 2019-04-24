@@ -191,7 +191,7 @@ class Response
      * @param array $options
      * @return Response
      */
-    public static function view($view, $options)
+    public static function view($view, $options = [])
     {
         return new self(Template::render($view, $options), 200);
     }

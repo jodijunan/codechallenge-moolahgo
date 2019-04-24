@@ -22,7 +22,6 @@ class Dispatcher
             $options = isset($options['options']) ? $options['options']: null;
             return $this->resolve($request, $options);
         }
-
         error_log('Dispatcher::resolve - Empty result');
         return null;
     }
@@ -47,6 +46,7 @@ class Dispatcher
 
         if (!\is_string($options)) {
             if (!is_array($options)) {
+                error_log('Dispatcher::resolve - Options not array');
                 return null;
             }
 
@@ -70,10 +70,10 @@ class Dispatcher
             return $controller->$method($request);
         } catch (\Error $error) {
             error_log('Dispatcher::resolve - Something went wrong - Error: '.$error->getMessage());
-            return null;
+            throw $error;
         } catch (\Exception $exception) {
             error_log('Dispatcher::resolve - Something went wrong - Exception: '.$exception->getMessage());
-            return null;
+            throw $exception;
         }
     }
 }

@@ -50,6 +50,7 @@ class Main
         $this->dispatcher = new Dispatcher();
 
         Template::setViewDirectory($this->appRoot.DIRECTORY_SEPARATOR.'Views');
+        Session::getInstance()->start();
     }
     /**
      * Return router object
@@ -75,10 +76,19 @@ class Main
         if (!$match) {
             return (new Response('404', 404))->sendOutput();
         } else {
-            $result = $this->dispatcher->dispatch($request, $match);
+            $result = null;
+
+            try {
+                $result = $this->dispatcher->dispatch($request, $match);
+            } catch (\Error $error) {
+                return (new Response('Something went wrong - Error', 500))->sendOutput();
+            } catch (\Exception $exception) {
+                return (new Response('Something went wrong - Exception', 500))->sendOutput();
+            }
+
             if (!$result) {
                 error_log('Main::start - Empty response');
-                return (new Response('Something went wrong', 500))->sendOutput();
+                return (new Response('', 200))->sendOutput();
             }
 
             if ($result instanceof Response) {
@@ -96,10 +106,10 @@ class Main
                     ]))->sendOutput();
                 } catch (\Error $error) {
                     error_log('Main::start - Something went wrong - Error: ', $error->getMessage());
-                    return (new Response('Something went wrong', 500))->sendOutput();
+                    return (new Response('Something went wrong - Error', 500))->sendOutput();
                 } catch (\Exception $exception) {
                     error_log('Main::start - Something went wrong - Exception: ', $exception->getMessage());
-                    return (new Response('Something went wrong', 500))->sendOutput();
+                    return (new Response('Something went wrong - Exception', 500))->sendOutput();
                 }
             }
 

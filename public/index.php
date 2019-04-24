@@ -1,6 +1,8 @@
 <?php
   require __DIR__ . '/../vendor/autoload.php';
 
+
 $app = new Homiedopie\Core\Main();
-$app->router()->route('/test', 'Homiedopie\App\Controllers\TestController@test');
+$router = $app->router();
+require __DIR__ . '/../config/routes.php';
 $app->start();

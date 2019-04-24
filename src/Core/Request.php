@@ -43,6 +43,18 @@ class Request
      * @var string
      */
     protected $pathInfo;
+    /**
+     * Get raw post
+     *
+     * @var string
+     */
+    protected $rawPost;
+    /**
+     * Get decoded raw post
+     *
+     * @var string
+     */
+    protected $decodedRawPost;
 
     /**
      * Request constructor
@@ -92,6 +104,52 @@ class Request
             return $this->value[$key] = $this->post[$key];
         }
 
+        return null;
+    }
+
+    /**
+     * Get all post values
+     *
+     * @return array|null
+     */
+    public function getPost()
+    {
+        return $this->post;
+    }
+
+    /**
+     * Get raw post body
+     *
+     * @param string $key
+     * @return string
+     */
+    public function getRawPost()
+    {
+        if ($this->rawPost) {
+            return $this->rawPost;
+        }
+
+        return $this->rawPost = file_get_contents('php://input');
+    }
+
+    /**
+     * Get decoded raw post body
+     *
+     * @param string $key
+     * @return array|null
+     */
+    public function getDecodedRawPost()
+    {
+        $body = null;
+        if (!$body) {
+            $body = $this->getRawPost();
+            if (is_string($body)) {
+                $body = json_decode($body, true);
+                if ($body !== null || $body !== false) {
+                    return $this->decodedRawPost = $body;
+                }
+            }
+        }
         return null;
     }
 

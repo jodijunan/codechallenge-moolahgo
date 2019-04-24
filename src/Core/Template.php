@@ -32,11 +32,11 @@ class Template
      * @param array $options
      * @return void
      */
-    public static function require($view, $options = [])
+    public static function requireFile($view, $options = [])
     {
         extract($options);
         try {
-            require static::$directory . DIRECTORY_SEPARATOR . $view . '.php';
+            require(static::$directory . DIRECTORY_SEPARATOR . $view . '.php');
         } catch (\Error $err) {
             error_log('Template::require - Something went wrong - Error: '.$err->getMessage());
         } catch (\Exception $exception) {
@@ -54,7 +54,7 @@ class Template
     public static function render($view, $options)
     {
         ob_start();
-        static::require($view, $options);
+        static::requireFile($view, $options);
         return \ob_get_clean();
     }
 }

@@ -7023,6 +7023,9 @@ a.text-dark:hover, a.text-dark:focus {
 body {
   padding-top: 5rem; }
 
-.starter-template {
-  padding: 3rem 1.5rem; }
+.footer {
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  background-color: #f5f5f5; }
 
