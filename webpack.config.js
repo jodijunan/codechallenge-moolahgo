@@ -5,7 +5,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader').VueLoaderPlugin
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: path.resolve(__dirname, "resources", "assets", "js", "app"),
   output: {
       path: path.resolve(__dirname, "public", "assets")
