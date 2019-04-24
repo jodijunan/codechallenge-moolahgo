@@ -131,7 +131,7 @@ class Response
     public function setStatusCode($statusCode)
     {
         $this->statusCode = $statusCode;
-        $this->statusText = $this->statusTexts[$statusCode] ? $this->statusTexts[$statusCode]: 'unknown';
+        $this->statusText = isset($this->statusTexts[$statusCode]) ? $this->statusTexts[$statusCode]: 'unknown';
 
         return $this;
     }

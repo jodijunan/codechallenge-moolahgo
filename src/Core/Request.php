@@ -81,7 +81,7 @@ class Request
             return $this->method;
         }
 
-        return $this->method = $this->server['REQUEST_METHOD'] ? $this->server['REQUEST_METHOD']: 'GET';
+        return $this->method = isset($this->server['REQUEST_METHOD']) ? $this->server['REQUEST_METHOD']: 'GET';
     }
 
     /**
@@ -164,6 +164,7 @@ class Request
             return $this->pathInfo;
         }
 
-        return $this->pathInfo = $this->server['PATH_INFO'] ? $this->server['PATH_INFO'] : null;
+        $url = isset($this->server['REQUEST_URI']) ? parse_url($_SERVER['REQUEST_URI']) : null;
+        return $this->pathInfo = $url !== false ? $url['path']: null;
     }
 }
