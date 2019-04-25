@@ -18,7 +18,8 @@ class Session
      * Session constructor
      */
     public function __construct()
-    {}
+    {
+    }
 
 
     /**

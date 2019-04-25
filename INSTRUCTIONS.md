@@ -9,8 +9,15 @@
 2. Open browser and access *http://127.0.0.1:8000*
 3. Try to add records and observe
 
-## WIP
-- Model setup
+## Use with database
+- Currently supported strategy is SQLite3 for model
+- To migrate
+  1. <site>/migrate/record/up to run migration (create table)
+  2. <site>/migrate/record/down to rollback (drop table)
+
+Note: Returns 500 whenever there is no table set
+- Get records DB link -> GET /ajax/getRecordsDB
+- Add record DB Link -> POST /ajax/addRecordDB
 
 ## Online Demo
 - `http://moolahgo.preshyow.com/`

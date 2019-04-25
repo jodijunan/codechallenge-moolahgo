@@ -5,6 +5,7 @@ namespace Homiedopie\App\Controllers;
 use Homiedopie\Core\Response;
 use Homiedopie\Core\Request;
 use Homiedopie\Core\Session;
+use Homiedopie\App\Models\Record;
 
 /**
  * HomeController class
@@ -95,9 +96,9 @@ class HomeController
         $amount = null;
         $percentage = null;
 
-        $this->validateDate($body, $errors);
-        $this->validateAmount($body, $errors);
-        $this->validatePercentage($body, $errors);
+        $this->validateDate($errors, $body);
+        $this->validateAmount($errors, $body);
+        $this->validatePercentage($errors, $body);
 
         return $errors;
     }
@@ -109,14 +110,14 @@ class HomeController
      * @param array $errors
      * @return void
      */
-    private function validatePercentage($body = [], &$errors)
+    private function validatePercentage(&$errors, $body = [])
     {
         if (isset($body['percentage'])) {
             $percentage = $body['percentage'];
             if ($percentage) {
                 if (!is_numeric($percentage)) {
                     $errors['percentage'] = 'Percentage must be numeric.';
-                } else if (!($percentage >= -10 && $percentage <= 10)) {
+                } elseif (!($percentage >= -10 && $percentage <= 10)) {
                     $errors['percentage'] = 'Percentage must be between -10 and 10';
                 }
             }
@@ -130,7 +131,7 @@ class HomeController
      * @param array $errors
      * @return void
      */
-    private function validateAmount($body = [], &$errors)
+    private function validateAmount(&$errors, $body = [])
     {
         if (!isset($body['amount'])) {
             $errors['amount'] = 'Amount is required.';
@@ -153,7 +154,7 @@ class HomeController
      * @param array $errors
      * @return void
      */
-    private function validateDate($body = [], &$errors)
+    private function validateDate(&$errors, $body = [])
     {
         if (!isset($body['date'])) {
             $errors['date'] = 'Date is required.';
@@ -188,5 +189,52 @@ class HomeController
         return [
             'data' => $records ? $records: []
         ];
+    }
+
+    /**
+     * Get records in db
+     *
+     * @return array
+     */
+    public function getRecordsDB()
+    {
+        $records = (new Record())->getAll();
+        return [
+            'data' => $records ? $records: []
+        ];
+    }
+
+    /**
+     * Add records to db
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function addRecordDB(Request $request = null)
+    {
+        $body = $request->getPost();
+        if (!$body) {
+            $body = $request->getDecodedRawPost();
+        }
+
+        if (!$body) {
+            return [
+                'error' => 'Fields required!'
+            ];
+        }
+
+        $errors = $this->validateForm($body);
+        if ($errors) {
+            return [
+                'error' => $errors
+            ];
+        }
+
+        $computed = $this->getFinalAmount($body);
+        $body['final_amount'] = $computed['final_amount'];
+        $body['fee'] = $computed['fee'];
+        $record = new Record($body);
+        $record->save();
+        return $record->toArray();
     }
 }
