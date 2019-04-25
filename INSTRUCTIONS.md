@@ -11,9 +11,11 @@
 
 ## Use with database
 - Currently supported strategy is SQLite3 for model
+- Required Extensions: `pdo` `pdo_sqlite` `sqlite3`
 - To migrate
-  1. <site>/migrate/record/up to run migration (create table)
-  2. <site>/migrate/record/down to rollback (drop table)
+  1. Add permissions to `storage` folder `chmod -R 777 storage`
+  2. Run <site>/migrate/record/up to migrate (create table)
+  3. Run <site>/migrate/record/down to rollback (drop table)
 
 Note: Returns 500 whenever there is no table set
 - Get records DB link -> GET /ajax/getRecordsDB
