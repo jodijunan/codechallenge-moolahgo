@@ -3,8 +3,8 @@ require "Fee.php";
 
 function calculate($date, $amount, $percentage)
 {
-    $addition = $amount * $percentage;
-    $result = ["date" => $date, "fee" => $amount + $addition];
+    $fee = $amount * $percentage;
+    $result = ["date" => $date, "fee" => $fee, "totalAmount" => $amount + $fee];
     return json_encode($result);
 }
 
