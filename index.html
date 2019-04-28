@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="assets/style.css">
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+    <script src="lib/jquery.js"></script>
+    <script src="lib/angular.js"></script>
+    <script src="lib/angular-sanitize.js"></script>
+    <script src="lib/ngStorage.min.js"></script>
+
+    <script src="assets/main.js"></script>
+
+    <title>CodeChallenge</title>
+</head>
+
+<body>
+
+<div class="container" ng-app="myCode">
+    <div class="row justify-content-center">
+        <div class="col-md-8 main">
+            <div class="card" ng-controller="myCtrl">
+                <div class="header"><i>Code Test</i></div>
+                <div class="card-body">
+                    <form name="myForm" ng-submit="saveData()">
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Date</label>
+                            <div class="col-md-6" ng-class="{ 'has-error' : myForm.date.$invalid && !myForm.date.$pristine }">
+                                <input type="date" name="mydate" ng-model="mydate" class="form-control" name="email-address" required
+                                       autofocus>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Percentage</label>
+                            <div class="col-md-6" ng-class="{ 'has-error' : myForm.percentage.$invalid && !myForm.percentage.$pristine }">
+                                <input type="number" min="-10" max="10" onkeydown="return false" placeholder="press right button"
+                                       name="percentage" ng-model="percentage" ng-change="showFinal()" class="form-control" name="password">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Amount</label>
+                            <div class="col-md-6" ng-class="{ 'has-error' : myForm.amount.$invalid && !myForm.amount.$pristine }">
+                                <input type="number" name="amount" ng-model="amount" ng-keyup="showFinal()" class="form-control" name="password" required>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-6 offset-md-4">
+                            <button type="submit" class="btn btn-block btn-info" ng-disabled="myForm.$invalid">
+                                Submit
+                            </button>
+
+                        </div>
+
+
+                        <div class="col-md-6 offset-md-4 final" ng-show="finalvalue">
+
+                            <h6> Your Final Value : <span ng-bind="finalvalue"></span></h6>
+
+                        </div>
+
+                    </form>
+                </div>
+
+                <div class="card-body" ng-show="lists">
+                    <div class="col-md-12 offset-md-2">
+                        <table class="table table-responsive">
+                            <tr><th>Date</th><th>Amount</th><th>Percentage</th><th>Fees</th></tr>
+                            <tr ng-repeat="list in lists">
+                                <td>{{ list.mydate }}</td>
+                                <td>{{ list.amount }}</td>
+                                <td>{{ list.percentage }}</td>
+                                <td>{{ list.fees }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-md-6 offset-md-4" ng-show="lists">
+                    <button class="btn btn-block btn-warning" ng-click="clear()">
+                        Clear LocalStorage
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
