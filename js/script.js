@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
     request.onreadystatechange = () => {
       if (request.status === 200) {
         let response = JSON.parse(request.responseText);
+        // console.log(response);
         resultInput.value = response.totalAmount.toLocaleString();
         clearForm();
       }

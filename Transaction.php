@@ -1,12 +1,12 @@
 <?php
 
-class Fee
+class Transaction
 {
     protected $date;
     protected $arbitraryAmount;
     protected $percentage;
     protected $feeAmount;
-
+    protected $totalAmount;
 
     /**
      * Get the value of date
@@ -81,9 +81,29 @@ class Fee
      *
      * @return  self
      */
-    public function setFeeAmount($feeAmount)
+    public function setFeeAmount()
     {
-        $this->feeAmount = $feeAmount;
+        $this->feeAmount = $this->arbitraryAmount * ($this->percentage/100);
+
+        return $this;
+    }
+
+    /**
+     * Get the value of totalAmount
+     */
+    public function getTotalAmount()
+    {
+        return $this->totalAmount;
+    }
+
+    /**
+     * Set the value of totalAmount
+     *
+     * @return  self
+     */
+    public function setTotalAmount()
+    {
+        $this->totalAmount = $this->arbitraryAmount + $this->feeAmount;
 
         return $this;
     }
