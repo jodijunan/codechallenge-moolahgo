@@ -54,7 +54,8 @@
             </div>
             <div class="row">
                 <div class="input-field col s6">
-                    <input id="amount" type="number" name="amount" onkeyup="displayButton()">
+                    <!-- <input id="amount" type="number" name="amount" onkeyup="displayButton()"> -->
+                    <input id="amount" type="number" name="amount">
                     <label for="amount">Arbitrary Amount</label>
                 </div>
             </div>
@@ -82,6 +83,9 @@
                         disabled>Calculate<i class="material-icons right">send</i>
                     </button>
                 </div>
+                <div class="col m3 l3">
+                    <button id="clear-button" class="btn waves-effect blue accent-4" name="submit">Clear</button>
+                </div>
             </div>
             <div class="row">
                 <div class="col m3 l3">
@@ -95,7 +99,10 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="js/materializeInit.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="js/script.js"></script>
+
 </body>
 
 </html>
