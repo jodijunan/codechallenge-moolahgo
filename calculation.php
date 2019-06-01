@@ -1,7 +1,9 @@
 <?php
-require_once "Transaction.php";
-require "history.php";
 
+session_start();
+
+require_once "Transaction.php";
+require_once "history.php";
 
 if (isset($_POST["amount"])) {
     $transaction = new Transaction();
@@ -15,7 +17,10 @@ if (isset($_POST["amount"])) {
     $history_data = addToHistory($transaction);
 
     $result = ["totalAmount" => $transaction->getTotalAmount(), "history" => $history_data];
-    
+
     $response = json_encode($result);
     echo $response;
+} else {
+    clearHistory();
+    echo json_encode($_SESSION["history"]);
 }
