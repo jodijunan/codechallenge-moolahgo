@@ -15,12 +15,13 @@ if (isset($_POST["amount"])) {
     $transaction->setTotalAmount();
 
     $history_data = addToHistory($transaction);
+    $latest_history_data = end($history_data);
 
-    $result = ["totalAmount" => $transaction->getTotalAmount(), "history" => $history_data];
+    $result = ["totalAmount" => $transaction->getTotalAmount(),
+                "history" => $history_data];
 
-    $response = json_encode($result);
-    echo $response;
-} else {
+    echo json_encode($result);
+} elseif ($_POST["clear_history"]) {
     clearHistory();
     echo json_encode($_SESSION["history"]);
 }

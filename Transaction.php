@@ -43,7 +43,7 @@ class Transaction
      */
     public function setArbitraryAmount($arbitraryAmount)
     {
-        $this->arbitraryAmount = $arbitraryAmount;
+        $this->arbitraryAmount = (int)$arbitraryAmount;
 
         return $this;
     }
@@ -63,7 +63,7 @@ class Transaction
      */
     public function setPercentage($percentage)
     {
-        $this->percentage = $percentage;
+        $this->percentage = (int)$percentage;
 
         return $this;
     }

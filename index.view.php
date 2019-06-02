@@ -83,15 +83,34 @@
                         disabled>Calculate<i class="material-icons right">send</i>
                     </button>
                 </div>
-                <div class="col m3 l3">
-                    <button id="clear-button" class="btn waves-effect blue accent-4" name="submit">Clear</button>
-                </div>
             </div>
             <div class="row">
                 <div class="col m3 l3">
                     <label id="result-label" for="result" hidden>Result</label>
                     <input id="result" type="text" name="result" hidden>
-
+                </div>
+            </div>
+            <div class="row">
+                <div class="col m6 l6">
+                    <table id="history-table" class="responsive-table">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Date</th>
+                                <th>Arbitrary Amount</th>
+                                <th>Percentage</th>
+                                <th>Fee</th>
+                                <th>Total Amount</th>
+                            </tr>
+                        <tbody>
+                        </tbody>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col m3 l3">
+                    <button id="clear-button" class="btn waves-effect blue accent-4" name="submit">Clear</button>
                 </div>
             </div>
         </div>

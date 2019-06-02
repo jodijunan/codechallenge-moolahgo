@@ -1,53 +1,67 @@
-let calculateButton = document.getElementById("calculate-button");
-let resultInput = document.getElementById("result");
-let resultLabel = document.getElementById("result-label");
+$(document).ready(() => {
+  // Enable Button
+  $("#amount").keyup(() => {
+    $("#result").val("");
+    $("#percentage").val("0");
+    $("#calculate-button").prop("disabled", false);
+  });
 
-let date = document.getElementById("date");
-let amount = document.getElementById("amount");
-let percentage = document.getElementById("percentage");
-
-document.addEventListener("DOMContentLoaded", function() {
-  calculateButton.addEventListener("click", () => {
-    resultInput.style.display = "block";
-    resultLabel.style.display = "block";
-
-    let request = new XMLHttpRequest();
-
-    let requestParams =
-      "amount=" +
-      amount.value +
-      "&percentage=" +
-      percentage.value +
-      "&date=" +
-      date.value;
-
-    request.open("POST", "calculation.php", true);
-
-    request.setRequestHeader(
-      "Content-Type",
-      "application/x-www-form-urlencoded"
-    );
-
-    request.send(requestParams);
-
-    request.onreadystatechange = () => {
-      if (request.status === 200) {
-        let response = JSON.parse(request.responseText);
-        // console.log(response);
-        resultInput.value = response.totalAmount.toLocaleString();
-        clearForm();
-      }
+  $("#calculate-button").on("click", () => {
+    let data = {
+      date: $("#date").val(),
+      amount: $("#amount").val(),
+      percentage: $("#percentage").val()
     };
+
+    $.post("calculation.php", data).done(data => {
+      let result = JSON.parse(data);
+      console.log(result);
+      let last_item = result.history.length;
+      let history = result.history[last_item - 1];
+      $("#result-label").show();
+      $("#result")
+        .val(result.totalAmount.toLocaleString())
+        .show();
+
+      $("#history-table tbody").append(
+        "<tr>" +
+          "<td>" +
+          last_item +
+          "</td>" +
+          "<td>" +
+          history.date.toLocaleString() +
+          "</td>" +
+          "<td>" +
+          history.ArbitraryAmount.toLocaleString() +
+          "</td>" +
+          "<td>" +
+          history.Percentage.toLocaleString() +
+          " %" +
+          "</td>" +
+          "<td>" +
+          history.Fee.toLocaleString() +
+          "</td>" +
+          "<td>" +
+          history.TotalAmount.toLocaleString() +
+          "</td>" +
+          "</tr>"
+      );
+
+      // Clear form
+      $("#date").val("");
+      $("#amount").val("");
+      $("#percentage").val("");
+    });
+  });
+
+  $("#clear-button").on("click", () => {
+    let data = { clear_history: true };
+
+    $.post("calculation.php", data).done(result => {
+      console.log(result);
+      $("#result").val("");
+      $("#calculate-button").prop("disabled", true);
+      $("#history-table tbody").empty();
+    });
   });
 });
-
-// This function is called onkeyup used in amount field
-function displayButton() {
-  calculateButton.disabled = false;
-}
-
-function clearForm() {
-  date.value = "";
-  amount.value = "";
-  percentage.selectedIndex = null; // to reset select
-}
