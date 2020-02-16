@@ -14,7 +14,7 @@ footer {
   background-color: #f5f5f5;
 }
 #ref_code {
-	text-transform: capitalize;
+	text-transform: uppercase;
 }
 .load-icon {
   position: fixed;

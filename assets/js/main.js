@@ -10,27 +10,33 @@ $(function() {
         e.preventDefault();
   });
   $("#ref_code").attr("autocomplete", "off");
-	$('#ref_code').on('keyup', function(e) {
+	$('#ref_code').on('keypress', function(e) {
 		$(this).val($(this).val().toUpperCase());
 		var regex = new RegExp("^[a-zA-Z0-9]+$");
     var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
     var val = $(this).val();
-		if(e.keyCode==8 || e.keyCode==46) {
-			if(val.length < 6)
-      	$('#submit_btn').prop('disabled', true);
-		}
-    if (regex.test(str)) {    	
-    	this.value.toUpperCase();
-    	if(val.length == 6) {
-    		// console.log(val)
-      	$('#submit_btn').prop('disabled', false);
-    	}
-    	if(val.length > 6)
-    		$(this).val(val.slice(0,6));
+    if (regex.test(str)) { 
+    	if(val.length == 5) {
+	    	$('#submit_btn').prop('disabled', false);
+	  	}
+	  	if(val.length > 5) {
+		  	$(this).val(val.slice(0,5));
+		  }
       return true;
     }
     e.preventDefault();
     return false;
+	})
+	$("#ref_code").on('keydown', function(e) {
+		var val = $(this).val();
+    console.log(val.length)
+
+		if(e.keyCode==8 || e.keyCode==46) {
+			if (val.length < 6 || val.length < 5 || val.length == 6) {
+	      $('#submit_btn').prop('disabled', true);
+	  	}
+	  }
+	 
 	})
 	$(document).on('submit', '#checkRefCode', function(e) {
 		var status = $('#referralStatus');
@@ -41,7 +47,7 @@ $(function() {
 			$.ajax({
 				url: '/process',
 			  type: 'get',
-			  data: {referralcode:val},
+			  data: {referralcode:val.toUpperCase()},
 			  dataType: 'json',
 			  success: function(response) {
 					hideIcon();
