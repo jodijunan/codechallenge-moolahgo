@@ -20,8 +20,10 @@ class Home extends CI_Controller {
 			'success' => false,
 			'message' => 'No referral person found!'
 		);
-		if(isset($_GET['referralcode'])) {
-			$user = $this->user->getUser($_GET['referralcode']);
+		if(isset($_POST['referralcode'])) {
+			$json = $_POST['referralcode'];
+			$json = json_decode($json);
+			$user = $this->user->getUser($json->value);
 			if($user) {
 				$data['success'] = true;
 				$data['message'] = 'Referral person found!';

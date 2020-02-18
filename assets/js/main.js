@@ -41,13 +41,15 @@ $(function() {
 	$(document).on('submit', '#checkRefCode', function(e) {
 		var status = $('#referralStatus');
 		var val = $('#ref_code').val();
+		var json = {value:val};
+
 		if(val.length == 6) {
 			showIcon();
 			status.empty();
 			$.ajax({
 				url: '/process',
-			  type: 'get',
-			  data: {referralcode:val.toUpperCase()},
+			  type: 'post',
+			  data: {referralcode:JSON.stringify(json)},
 			  dataType: 'json',
 			  success: function(response) {
 					hideIcon();
