@@ -23,7 +23,7 @@ class Home extends CI_Controller {
 		if(isset($_POST['referralcode'])) {
 			$json = $_POST['referralcode'];
 			$json = json_decode($json);
-			$user = $this->user->getUser($json->value);
+			$user = $this->user->getUser($json->referralcode);
 			if($user) {
 				$data['success'] = true;
 				$data['message'] = 'Referral person found!';

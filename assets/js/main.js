@@ -41,7 +41,7 @@ $(function() {
 	$(document).on('submit', '#checkRefCode', function(e) {
 		var status = $('#referralStatus');
 		var val = $('#ref_code').val();
-		var json = {value:val};
+		var json = {referralcode:val};
 
 		if(val.length == 6) {
 			showIcon();
