@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Referral Code Lookup</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+    body {
+        background-color:#F1F0ED;
+        min-width:250px;
+    }
+    input[type="text"] {
+        height: 46px;
+        padding: 21px 6px 21px 6px;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        text-align: center;
+        font-size: 14px;
+        width:100%;
+        text-transform:uppercase;
+    }
+    label {
+    	margin-left:15px;
+    	margin-right:15px;
+    }
+    label.error {
+    	color:#FF0000;
+    	margin-top:5px;
+    	width:100%;
+    }
+    button {
+        background-color:#E03C31;
+        border: 1px #E03C31 solid;
+        text-decoration:none;
+        color:#fff;
+        font-size:16px;
+        font-family:'Open Sans',sans-serif;
+        font-weight:normal;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius:5px;   
+        padding-top:10px;
+        padding-bottom:10px;
+        padding-right:30px;
+        padding-left:30px; 
+    }
+    button:hover {
+        background-color:#a4251d;
+        border: 1px #a4251d solid;  
+    }
+    .paddingTop30 {
+    	padding-top:30px;
+    }
+    #brandLogo {
+        width:200px;
+        padding-bottom:30px;
+    }
+    #ownerDetails {
+        padding-top:40px;
+        padding-bottom:40px;
+    }
+    #referralCodeForm {
+    	background-color:#FFFFFF;
+    	padding-top: 40px;
+    	padding-bottom: 40px;
+    	padding-right:15px;
+    	padding-left:15px;
+        border-radius: .3rem;
+        -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 0 3px;
+        box-shadow: rgba(0, 0, 0, 0.3) 0 0 3px;
+    }
+    /* START - LOADING SCREEN ANIMATION */
+    #transparentScreen {
+    	display:none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        z-index: 900;
+        top: 0;
+        left: 0;
+        background: rgb(0, 0, 0);
+        background: rgba(0, 0, 0, .5);
+            background-color: rgba(0, 0, 0, 0.5);
+        background-color: rgba(0,0,0,0.5);
+        -moz-opacity: 0.5;
+        opacity: 0.5;
+    }
+    #loadingScreen {
+        display: none;
+        position: fixed;
+        background-color: #ffffff;
+        padding: 10px;
+        top: 25%;
+        bottom: 0;
+        left: 25%;
+        right: 0;
+        z-index: 910;
+        text-align: center;
+        width: 50%;
+        height: 200px;
+        border-radius: 25px;
+        -moz-border-radius: 25px;
+        -webkit-border-radius: 25px;
+        -webkit-box-shadow: 0 0 12px rgba(0,0,0,.6);
+        -moz-box-shadow: 0 0 12px rgba(0,0,0,.6);
+        box-shadow: 0 0 12px rgba(0,0,0,.6);
+        opacity: 1;
+        -moz-transition: opacity 0.4s linear;
+        -o-transition: opacity 0.4s linear;
+        -webkit-transition: opacity 0.4s linear;
+        transition: opacity 0.4s linear;
+    }
+    .spinner {
+        margin: 0 auto;
+        width: 70px;
+        text-align: center;
+        display: table-cell;
+        vertical-align: middle;
+    }
+    .spinner > div {
+        width: 18px;
+        height: 18px;
+        background-color: #000000;
+        border-radius: 100%;
+        display: inline-block;
+        -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+        -moz-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+        -o-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+        animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    }
+    .spinner .bounce1 {
+        -webkit-animation-delay: -0.32s;
+        -moz-animation-delay: -0.32s;
+        -o-animation-delay: -0.32s;
+        animation-delay: -0.32s;
+    }
+    .spinner .bounce2 {
+        -webkit-animation-delay: -0.16s;
+        -moz-animation-delay: -0.16s;
+        -o-animation-delay: -0.16s;
+        animation-delay: -0.16s;
+    }
+    @-webkit-keyframes sk-bouncedelay {
+      0%, 80%, 100% {
+        -webkit-transform: scale(0);
+      }
+      40% {
+        -webkit-transform: scale(1);
+      }
+    }
+    @-moz-keyframes sk-bouncedelay {
+      0%, 80%, 100% {
+        -moz-transform: scale(0);
+      }
+      40% {
+        -moz-transform: scale(1);
+      }
+    }
+    @-o-keyframes sk-bouncedelay {
+      0%, 80%, 100% {
+        -o-transform: scale(0);
+      }
+      40% {
+        -o-transform: scale(1);
+      }
+    }
+    @keyframes sk-bouncedelay {
+      0%, 80%, 100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+      }
+      40% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+    }
+    /* END - LOADING SCREEN ANIMATION */
+
+    @media only screen and (min-width: 767px)
+    {
+        input[type="text"] {
+        	max-width:250px;
+        }
+    }
+    @media only screen and (max-width: 300px)
+    {
+        #brandLogo {
+            width:100%;
+        }
+    }
+    </style>
+
+    </head>
+    <body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+		    	<form id="referralCodeForm">
+                    <div class="text-center">
+                        <img id="brandLogo" src="https://www.moolahgo.com/img/logo_color.png" alt="MoolahGo" title="MoolahGo">
+                    </div>
+		    		<div class="text-center">
+		    			<label>Referral Code: </label><input type="text" name="referralCode" placeholder="Enter referral code..." maxlength="6">
+		    		</div>
+					<div class="text-center paddingTop30">
+			        	<button id="submitButton" type="button">Submit</button>
+			        </div>
+		    	</form>
+		    </div>
+		</div>
+	    <!-- Popup Loading Screen and Transparent screen --> 
+	    <div id="transparentScreen"></div>
+	    <div id="loadingScreen">
+	        <div class="spinner">
+	            <p id="loadingText">Loading, please wait...</p>
+	            <div class="bounce1"></div>
+	            <div class="bounce2"></div>
+	            <div class="bounce3"></div>
+	        </div>
+	        <div id="ownerDetails">
+	            <div id="ownerDetailsDisplay">
+	                <p>Unable to find referral code</p>
+	            </div>
+	            <div class="paddingTop30">
+	                <button id="closeOwnerDetailsButton" type="button">Close</button>
+	            </div>
+	        </div>
+	    </div>
+	    <!-- END OF Popup Loading Screen and Transparent screen -->
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js"></script>
+    <script>
+    var phpURL = "<insert URL>";
+
+    // ============================================================================ //
+    // ===========================  VALIDATION RULES ============================== //
+    // ============================================================================ //
+
+    //Regex expression to validate if input is alphanumerical
+    $.validator.methods.alphanumeric = function( value, element ) {
+		return /^[A-Za-z0-9]+$/.test(value);
+	}
+
+    $("#referralCodeForm").validate({
+		rules: {
+			referralCode: {
+		        required: true,
+				minlength: 6,
+				maxlength: 6,
+				alphanumeric: true
+			}
+      	},
+      	messages: {
+      		referralCode: {
+      			required: "Please enter a referral code",
+      			minlength: "Please enter at least 6 characters (Alphabets and Numbers only)",
+      			maxlength: "Please enter 6 characters only (Alphabets and Numbers only)",
+      			alphanumeric: "Please ensure that your input contains only alphabets and numbers only"
+      		}
+      	},
+      	submitHandler: function(form){
+            //Show loading screen
+            $("#transparentScreen").show();
+            $("#loadingScreen").css('display','table');
+            $("#spinner").show();
+            $("#ownerDetails").hide();
+
+            //Fire an AJAX call to retrieve owner details
+            $.ajax({
+				type: "GET",
+				url: phpURL,
+				data: "referralcode="+$("input[name=referralCode]").val().toUpperCase(),
+				dataType: 'JSON',
+				success: function(data) {
+					//Hide loading animation
+					$(".spinner").hide();
+					//Show owner details
+    				$("#ownerDetails").show();
+    				$("#ownerDetailsDisplay").html("");
+
+    				//If referral code can't be found, the property "notfound" will be retrieved
+    				if(data.hasOwnProperty("notfound"))
+    				{
+    					$("#ownerDetailsDisplay").html("<p>Unable to find referral code</p>");
+    				}
+    				else
+    				{
+    					//Print all details of the owner
+    					for (var property in data) {
+						  $("#ownerDetailsDisplay").append(`<p><b style='color:#FF0000;
+        text-transform:uppercase'>${property}</b>: ${data[property]}</p>`);
+						}
+    				}
+				},
+                error: function(data) {
+                    //Hide loading screen
+                    $("#transparentScreen").hide();
+                    $("#loadingScreen").hide();
+                    alert("Error: Unable to connect to PHP server");
+                }
+			});
+        }
+	});
+
+    // ============================================================================ //
+    // ========================  BUTTON FUNCTIONS ================================= //
+    // ============================================================================ //
+    
+    $("#submitButton").on('click',function(){
+    	//Submit form to retrieve owner details
+    	$("#referralCodeForm").submit();
+    });
+
+    $("#closeOwnerDetailsButton").on('click',function(){
+    	//Hide loading screen
+    	$("#transparentScreen").hide();
+        $("#loadingScreen").hide();
+    });
+
+    </script>
+</body></html>
