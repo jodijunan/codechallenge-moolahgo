@@ -1,4 +1,21 @@
 # codechallenge-moolahgo
+
+Environment
+--------
+PHP 8  
+Lumen 8  
+
+Setup
+--------
+Run server:  
+composer install   
+npm install  
+php -S localhost:8000 -t public   
+
+Run unit test:  
+phpunit  
+
+
 The Task
 --------
 There are 2 parts to the task.
