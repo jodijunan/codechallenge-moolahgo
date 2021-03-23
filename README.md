@@ -41,7 +41,8 @@ php -S localhost:8000 -t public
 
 ## Project setup
 
-open terminal and go to `/moolahgo-web` directory and do `yarn install`
+1. open terminal and go to `/moolahgo-web` directory and do `yarn install`
+2. open `.env` file and edit `VUE_APP_BASE_URL` for web service host, if you use example, you can fill with `http://localhost:8000`
 
 ### Compiles and hot-reloads for development
 

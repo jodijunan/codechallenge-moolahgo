@@ -187,7 +187,7 @@ export default {
     async getReferralInfo() {
       this.$refs.observer.validate();
       axios
-        .post("http://localhost:8000/api/process", {
+        .post(process.env.VUE_APP_BASE_URL + "/api/process", {
           refferal_code: this.referralCode,
         })
         .then((response) => {
