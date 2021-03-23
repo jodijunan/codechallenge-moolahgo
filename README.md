@@ -1,44 +1,63 @@
-# codechallenge-moolahgo
-The Task
---------
-There are 2 parts to the task.
-1. To write a micro service using PHP (vanilla PHP, CI or Lumen only).
-2. To write a simple mobile responsive web client to consume the micro service.
+# Moolahgo API
 
-The Micro Service
------------------
-The micro service will have 1 REST endpoint, /process. It will take a json value and process it. It will return the result in json as well.
-The json will contain the following info: referralcode.
+Web service using laravel lumen
 
-What the "process" endpoint do is to find the owner of the referralcode and return the detail of the owner. In real application, this owner detail will be stored in a db table. However, for this challenge, please create a model with a pre-populated value. Please put a code in comment on how to do that in sql as well. 
+## Server Requirements
 
-The Web Client
---------------
-You will create a MOBILE RESPONSIVE web form for user to key in a referral code. This input is required and the referral code should be 6 characters, only contain alphanumeric, all in upper case.
+As stated from [Lumen server requirement](https://lumen.laravel.com/docs/8.x#server-requirements).
 
-There will be a submit button that is automatically enable/disable based on whether the mandatory fields are populated and valid.
+- PHP >= 7.3
+- OpenSSL PHP Extension
+- PDO PHP Extension
+- Mbstring PHP Extension
+- [Composer](https://getcomposer.org/) installed.
+- Mysql database
+- Nginx or Apache web service
 
-When user submit the form, display a wait icon, submit using ajax to the microservice, and then display the result.
+## Project setup
 
-The Process
------------
-- Create a branch from this repository.
-- Do all your work, make sure they run correctly in your own environment.
-- Push your final work and create a pull request.
-- If possible please provide us a link so that we can test your work.
-- Otherwise, let us know how to setup your work so that we test it in our own workspace.
+1. open `mysql` and create new database i.e `moolahgo`
+2. open terminal and go to `/moolahgo-service` directory and do `composer install`
+3. open `.env` file and edit database information (db name, username and password)
+4. do `php artisan migrate` in the terminal
+5. finally do `php artisan db:seed` in the terminal
 
-What We Are Looking For In This Test
-------------------------------------
-- Logic, thought process and the ability to pick up new things to complete a job.
-- Completeness. We want to see that you are able to get to the final result at the same time covering all the possible edge cases and error checking.
-- Simplicity. We want simple codes so maintenance is not a nightmare. This application description maybe long, but the code is simple. There are many libraries out there to help you do the job. Use them.
+### Running The API
 
-Hints and Suggestions (optional)
---------------------------------
-You can safely skip this part.
+the command to run the API is `php -S [host]:[port] -t [folder to serve]`
+example:
 
-If mobile responsiveness, data binding, or ajax are new to you, below are some suggested library you can look into to help you:
-- Twitter bootstrap (https://getbootstrap.com/) - for mobile responsive
-- Vue (https://vuejs.org/) - for data binding, error checking and ajax
-- Jquery (https://jquery.com/) - for data binding, error checking and ajax
+```
+php -S localhost:8000 -t public
+```
+
+# Moolahgo Web
+
+## Server Requirements
+
+- [nodejs and npm](https://nodejs.org/en/) installed.
+- [Yarn](https://classic.yarnpkg.com/en/docs/install/#windows-stable) installed
+- after nodejs and npm installed, do `npm install vue` in the terminal to install vue
+
+## Project setup
+
+1. open terminal and go to `/moolahgo-web` directory and do `yarn install`
+2. open `.env` file and edit `VUE_APP_BASE_URL` for web service host, if you use example, you can fill with `http://localhost:8000`
+
+### Compiles and hot-reloads for development
+
+```
+yarn serve
+```
+
+### Compiles and minifies for production
+
+```
+yarn build
+```
+
+### Lints and fixes files
+
+```
+yarn lint
+```
