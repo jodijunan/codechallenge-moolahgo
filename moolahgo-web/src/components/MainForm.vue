@@ -100,7 +100,7 @@
         <v-card-text>
           <v-container>
             <v-row justify="space-between">
-              <v-col cols="12" md="4">
+              <v-col cols="12">
                 <v-form ref="form">
                   <validation-provider
                     v-slot="{ errors }"
