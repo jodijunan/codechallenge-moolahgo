@@ -1,0 +1,29 @@
+/moolahgo-service/vendor
+/moolahgo-service/.idea
+/moolahgo-service/Homestead.json
+/moolahgo-service/Homestead.yaml
+/moolahgo-service/.phpunit.result.cache
+
+/moolahgo-web/.DS_Store
+/moolahgo-web/node_modules
+/moolahgo-web/dist
+
+
+# local env files
+/moolahgo-web/.env.local
+/moolahgo-web/.env.*.local
+
+# Log files
+/moolahgo-web/npm-debug.log*
+/moolahgo-web/yarn-debug.log*
+/moolahgo-web/yarn-error.log*
+/moolahgo-web/pnpm-debug.log*
+
+# Editor directories and files
+/moolahgo-web/.idea
+/moolahgo-web/.vscode
+/moolahgo-web/*.suo
+/moolahgo-web/*.ntvs*
+/moolahgo-web/*.njsproj
+/moolahgo-web/*.sln
+/moolahgo-web/*.sw?
