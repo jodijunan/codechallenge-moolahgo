@@ -1,0 +1,24 @@
+Configuration Moolahgo Challenge Code
+=====================================
+
+moolahgoservice :
+http://moolahgoservice.artisansolusi.com
+
+moolahgowebclient :
+http://moolahgowebclient.artisansolusi.com
+
+1. Create 2 vhost "moolahgoservice" and "moolahgowebclient"
+2. Copy all files base on 2 classification point 1
+3. moolahgo service :   
+   - Run "composer install" for get vendor directory
+   - config your database inside .env file
+   - run "php artisan migrate:refresh --seed" from root directory
+   - run " php -S localhost:8000 -t public"
+4. moolago web client
+   - get available owner referal code with access :
+     local = http://localhost:8000/api/owner_referalcode  
+     server = http://moolahgoservice.artisansolusi.com/api/owner_referalcode
+   - Insert available referal code inside the form 
+
+
+Develop By Anggun Wibowo
