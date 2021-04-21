@@ -40,10 +40,11 @@ QUEUE_CONNECTION=sync
 6. type (cli)> php artisan db:seed (create referral code data) 
 7. type (cli)> php -S localhost:8000 -t public (run the api)
 
-# Test 2
+# Webclient
 1. type (cli)> cd codechallenge-moolahgo\frontend\
-2. type (cli)> composer install 
-
+2. copy this file index.php into your webserver
+3. browser (cli) > http://{your_web_server_address}/index.php 
+ 
 
 The Task
 --------
