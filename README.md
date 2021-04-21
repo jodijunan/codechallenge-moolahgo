@@ -43,7 +43,7 @@ QUEUE_CONNECTION=sync
 # Webclient
 1. type (cli)> cd codechallenge-moolahgo\frontend\
 2. copy this file index.php into your webserver
-3. browser (cli) > http://{your_web_server_address}/index.php 
+3. browser (address) > http://{your_web_server_address}/index.php 
  
 
 The Task
