@@ -27,7 +27,7 @@ class Owner extends Model
 
     public function ReferralCode()
     {
-        return $this->belongsTo('App\Owner','id');
+        return $this->belongsTo('App\ReferralCode','id');
     }
 
 

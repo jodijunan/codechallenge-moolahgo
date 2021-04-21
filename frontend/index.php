@@ -38,6 +38,9 @@ $apiUrl = 'http://localhost:8000/process';
 						</div>
 
 					</form>
+
+					<div id="result"></div>
+
 				</div>
 
 
@@ -58,8 +61,8 @@ $apiUrl = 'http://localhost:8000/process';
 				code: {
 					required: true,
 					referralcode: true,
-					min: 6,
-					max: 6
+					minlength: 6,
+					maxlength: 6
 				},
 			},
 			messages: {
@@ -67,30 +70,63 @@ $apiUrl = 'http://localhost:8000/process';
 					required: "Please Enter your Referal Code"
 				}
 			},
-			success: function(label) {
-				$.ajax({
-					url: '<?php echo $apiUrl; ?>',
-					type: 'POST',
-					dataType: 'json',
-					data: {
-						"code": $("#code").val()
-					},
-					success: function(res) {
-						console.log(res);
-					},
-					error: function(res) {
-						console.log(res.responseText);
-					}
-				});
-			},
+
 		});
+
+
+		function enableBtnSubmit() {
+			setTimeout(function() {
+
+				$("#codeSubmit").html('Apply');
+				$("#codeSubmit").prop('disabled', false);
+
+			}, 500);
+		}
 
 
 		$("#codeSubmit").click(function(e) {
 			e.preventDefault();
 			$(this).html('<i class="fa fa-circle-o-notch fa-spin"></i> Loading');
 			$("#codeSubmit").prop('disabled', true);
-			$("#myform").valid();
+			let validate = $("#myform").valid();
+
+			if (validate === false) {
+
+				enableBtnSubmit();
+
+			} else {
+				$.ajax({
+					url: '<?php echo $apiUrl; ?>',
+					type: 'POST',
+					dataType: 'json',
+					data: $("#myform").serialize(),
+					success: function(res) {
+						var table = [];
+
+
+
+						if (res.status == 200) {
+							let status = res.data.status == 1 ? 'Aktif' : 'Inactive';
+
+							table.push("<table class='table table-responsive'><thead><tr><th>Owner</th><th>Referal Code</th><th>Status</th><th>Expired Date</th></tr></thead><tbody>");
+							table.push("<tr><td>" + res.data.owner.name + "</td>");
+							table.push("<td>" + res.data.code + "</td>");
+							table.push("<td>" + status +"</td>");
+							table.push("<td>" + res.data.expired_date + "</td></tr>");
+							table.push("</tbody></table>");
+
+							$('#result').html(table.join(""));
+						} else if (res.status == 404) {
+							$("#result").html('<div class="alert alert-info" role="alert">Referral Code not found</div>');
+						} else if (res.status == 401) {
+							$("#result").html('<div class="alert alert-danger" role="alert">Referral Code has been expired at ' + res.data.expired_date + '</div>');
+							$('#result').append(table.join(""));
+						}
+
+						enableBtnSubmit();
+					},
+				});
+			}
 			return false;
 		});
 	});
