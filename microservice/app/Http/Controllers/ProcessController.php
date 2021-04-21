@@ -35,7 +35,7 @@ class ProcessController extends Controller
                     $today       = date("Y-m-d H:i:s");  
                     $today_date  = new \DateTime($today);
                     $expiredDate = new \DateTime($result->expired_date);
-
+                    
                     if($today_date < $expiredDate){
                         return response()->json([
                             'msg'    => 'Expired referral code!',
@@ -44,7 +44,7 @@ class ProcessController extends Controller
                             ],200);
                     }
                 }
-                
+
                 return response()->json([
                     'msg'    => 'Data Found!',
                     'data'   => $result,
