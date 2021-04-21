@@ -27,9 +27,9 @@ class ReferralCode extends Model
 
 
 
-    public function owner()
+    public function Owner()
     {
-        return $this->hasOne(Owner::class);
+        return $this->hasOne('App\ReferralCode','owner_id');
     }
 
 }

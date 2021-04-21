@@ -29,7 +29,7 @@ class ProcessController extends Controller
                        404);
             } else {
                 $refCode = new ReferralCode();
-                $find = $refCode->where('code',$input)->get()->first();
+                $find = $refCode->with('owner')->where('code',$input)->first();
 
                 return response()->json([
                     'msg'      => $find,
