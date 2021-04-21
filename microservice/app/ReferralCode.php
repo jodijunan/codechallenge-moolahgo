@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ReferralCode extends Model 
+class ReferralCode extends Model
 {
 
 
@@ -25,5 +25,11 @@ class ReferralCode extends Model
         'code', 'status','expired_date'
     ];
 
-   
+
+
+    public function owner()
+    {
+        return $this->hasOne(Owner::class);
+    }
+
 }

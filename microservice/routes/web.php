@@ -10,9 +10,5 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
-use App\Libraries\Referralcode;
 
-$router->get('/', function () use ($router) {
-    //return $router->app->version();
-    echo Referralcode::generatecode(6);
-});
+$router->post('/process', 'ProcessController@process');
