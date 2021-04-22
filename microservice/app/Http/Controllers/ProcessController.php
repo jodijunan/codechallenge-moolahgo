@@ -62,7 +62,7 @@ class ProcessController extends Controller
             }
         } catch(Exception $e) {
             return response()->json([
-                'msg'    => 'Input invalid!',
+                'msg'    => 'Internal Server Error!',
                 'data'   => false,
                 'status' => 500,
             ], 200);
