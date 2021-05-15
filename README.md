@@ -1,4 +1,51 @@
 # codechallenge-moolahgo
+
+# How to run these projects
+
+Open your terminal (command line interface)
+
+You should download this project on github 
+1. type (cli)> git clone https://github.com/rabkawork/codechallenge-moolahgo.git
+2. type (cli)> cd codechallenge-moolahgo
+3. type (cli)> git checkout develop 
+
+# Microservice
+
+1. type (cli)> cd codechallenge-moolahgo\microservice\
+2. type (cli)> composer install 
+3. type (cli)> create database in your mysql database server 
+4. type (cli)> cp .env.example .env and config this file
+```
+APP_NAME=Lumen
+APP_ENV=local
+APP_KEY=
+APP_DEBUG=true
+APP_URL=http://localhost
+APP_TIMEZONE=UTC
+
+LOG_CHANNEL=stack
+LOG_SLACK_WEBHOOK_URL=
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE={your_database}
+DB_USERNAME={username}
+DB_PASSWORD={password}
+
+CACHE_DRIVER=file
+QUEUE_CONNECTION=sync
+```
+5. type (cli)> php artisan migrate (database migration)
+6. type (cli)> php artisan db:seed (create referral code data) 
+7. type (cli)> php -S localhost:8000 -t public (run the api)
+
+# Webclient
+1. type (cli)> cd codechallenge-moolahgo\frontend\
+2. copy this file index.php into your webserver
+3. browser (address) > http://{your_web_server_address}/index.php 
+ 
+
 The Task
 --------
 There are 2 parts to the task.
