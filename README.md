@@ -42,3 +42,32 @@ If mobile responsiveness, data binding, or ajax are new to you, below are some s
 - Twitter bootstrap (https://getbootstrap.com/) - for mobile responsive
 - Vue (https://vuejs.org/) - for data binding, error checking and ajax
 - Jquery (https://jquery.com/) - for data binding, error checking and ajax
+
+
+# Submission: Micro Service (Lumen framework setup steps)
+It is lumen based api for managing referral code processor.
+
+Framework - Lumen (https://lumen.laravel.com/docs/8.x/)
+1) Setup local dev environment taking reference of above link (PHP >= 7.3)
+2) Execute "composer update" in terminal to download project specific dependencies (like vendor folder, please go to your poject folder for executing this cmd, also make sure you have setup composer in your machine or refer to this link: https://getcomposer.org/download/)
+3) To run local development server: `php -S localhost:8000 -t public` (Port may very according to your preference or availability)
+3) Technical implementation details:
+    - Created Domains consists of
+      - Models
+      - Interfaces
+      - Repositories
+    - Created Controllers (Injected Repositories for communication with DB - Decoupled database layer from Controller)
+    - Created routes accessing specific end points: (Port may very according to your preference or availability)
+      - Get Owner Detail By Referral Code: http://localhost:8000/process
+      - Get Referral Codes: http://localhost:8000/referralcodes
+      - Get Users: http://localhost:8000/users
+
+# Submission: Web Client
+
+It simple HTML, Jquery & Bootstrap based webpage
+1) Go to script.js file & update constant API_URL to relevant url of above setup API 
+2) Just open the index.html in web browser to check specific validations & get owner details by referral code
+
+# Submission: Reference Documentation
+
+You can refer to this document for checking API & client integrations: `Codechallenge Moolahgo.docx`
