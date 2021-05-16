@@ -2,6 +2,16 @@
 
 const API_URL = 'http://localhost:8000/process';
   $(document).ready(function(){
+
+   $('#referralcode').on('blur keyup', function() {
+    $('#owner_data').html("");
+    $('#error_message').html("");           
+    if ($("#form-ref").valid()) {
+        $('#btn-submit').prop('disabled', false);  
+      } else {
+          $('#btn-submit').prop('disabled', 'disabled');
+      }
+  });
       $( "#spinner" ).hide();
       //Referal Code validator      
       $.validator.addMethod("alphaNumeric", function(value, element) {
