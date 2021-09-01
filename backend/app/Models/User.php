@@ -53,8 +53,11 @@ class User extends Model
             $result['success'] = false;
             $result['message'] = 'Cannot find user with provided referral code';
         } else {
+            $user = self::$users[$userIndex];
+            $user['email'] = substr($user['email'], 0, 3) . '***@***' . substr($user['email'], -7);
+            $user['phone'] = substr($user['phone'], 0, 3) . '******' . substr($user['phone'], -3);
             $result['success'] = true;
-            $result['user_detail'] = self::$users[$userIndex];
+            $result['user_detail'] = $user;
         }
         return  $result;
     }
