@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Referral Checker</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Fontawesome CSS -->
+    <link href="assets/css/fontawesome.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+</head>
+
+<body class="d-flex h-100 text-center text-white bg-dark">
+    <script>
+        var bodyEl = document.getElementsByTagName('body');
+        bodyEl[0].style.backgroundImage = 'url(https://source.unsplash.com/featured/'+window.outerWidth+'x'+window.outerHeight+'/?inspirational)';
+    </script>
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <main class="mt-5 px-3">
+            <h1 class="display-2 mt-5">Check your referral code here</h1>
+            <form method="POST" action="process" id="frmReferralChecker" autocomplete="off">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Referral Code" id="inpReferralCode"
+                        name="inpReferralCode" maxlength="6" required />
+                    <button class="btn btn-outline-light" type="submit" id="btnSubmit" style="min-width: 7.6rem;"
+                        disabled>
+                        <span class="btnSubmit-text-normal"><i class="fas fa-search"></i> Submit</span>
+                        <span class="btnSubmit-text-checking d-none"><i class="fas fa-spin fa-spinner"></i>
+                            Checking...</span>
+                    </button>
+                </div>
+
+                <div class="card text-black-50" style="display: none;" id="checkResult">
+                    <div class="card-body">
+                        <h4 class="card-title"></h4>
+                        <div class="card-text"></div>
+                        <table class="checkResult mx-auto">
+                            <tr>
+                                <th class="text-start">Nama</th>
+                                <td>:</td>
+                                <td class="text-start userName"></td>
+                            </tr>
+                            <tr>
+                                <th class="text-start">Email</th>
+                                <td>:</td>
+                                <td class="text-start userEmail"></td>
+                            </tr>
+                            <tr>
+                                <th class="text-start">Phone</th>
+                                <td>:</td>
+                                <td class="text-start userPhone"></td>
+                            </tr>
+                            <tr>
+                                <th class="text-start">Ref. Code</th>
+                                <td>:</td>
+                                <td class="text-start userRefCode"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </form>
+        </main>
+
+        <footer class="mb-0 mt-auto text-white-50">
+            <p>
+                <a href="https://www.moolahgo.com/" class="text-white">moolahgo</a> code challenge,
+                <span style="white-space: nowrap;">by <a href="https://github.com/arfanseptianto" class="text-white">@arfanseptianto</a></span>
+            </p>
+        </footer>
+    </div>
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/fontawesome.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+
+</html>
