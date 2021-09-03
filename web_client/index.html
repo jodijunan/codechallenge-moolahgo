@@ -75,7 +75,7 @@
 					</div>
 					
 					<div class="container-login100-form-btn">
-						<button id="btnSubmit" form="referralForm" type="submit" class="login100-form-btn " >
+						<button id="btnSubmit" form="referralForm" type="submit" class="login100-form-btn not-allowed" disabled>
 							Submit
 						</button>
 					</div>
@@ -206,6 +206,15 @@
 
 			$('#irefferalCode').on('keyup', function(){				
 				this.value = this.value.toUpperCase();
+				let fvalidate = $('#referralForm').validate().form();		
+				if(fvalidate == true){
+					$('#btnSubmit').removeClass('not-allowed');
+					$('#btnSubmit').removeAttr('disabled');
+				} else {
+					$('#btnSubmit').addClass('not-allowed');
+					$('#btnSubmit').attr('disabled', true);
+					$('#irefferalCode-error').css({"color":"red", "font-size":"12px", "margin-left":"18px"});
+				}
 
 			});
 
@@ -213,7 +222,7 @@
 				e.preventDefault();						
 				let fvalidate = $('#referralForm').validate().form();		
 				if(fvalidate == true){
-
+					console.log('ajax process');
 				} else {
 					console.log('error');						
 					$('#irefferalCode-error').css({"color":"red", "font-size":"12px", "margin-left":"18px"});
