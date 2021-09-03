@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Users extends Model
 {
-    protected $table = 'tabel_inv_referralcode';
+    protected $table = 'tabel_inv_users';
     /**
      * The attributes that are mass assignable.
      *

@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Warehouseproduct extends Model
 {
-    protected $table = 'tabel_inv_referralcode';
+    protected $table = 'tabel_inv_warehouseproduct';
     /**
      * The attributes that are mass assignable.
      *

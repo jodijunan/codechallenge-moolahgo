@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Uom extends Model
 {
-    protected $table = 'tabel_inv_referralcode';
+    protected $table = 'tabel_inv_uom';
     /**
      * The attributes that are mass assignable.
      *
