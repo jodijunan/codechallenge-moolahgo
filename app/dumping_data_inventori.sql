@@ -12,6 +12,14 @@
 --
 
 -- --------------------------------------------------------
+INSERT INTO `tabel_inv_referralcode` (`id`, `user_id`, `warehouse_id`, `code`, `date_created`, `date_modified`, `discontinue`) VALUES
+(1, '607', '1', '12345678123', '2021-09-03 11:11:04', '2021-09-03 11:11:04', '0');
+
+
+
+INSERT INTO `tabel_inv_users` (`id`, `firstname`, `lastname`, `email`, `date_created`, `date_modified`, `discontinue`) VALUES
+(607, 'Satya', 'Tamtomo', 'satyatamtomo@gmail.com', '2021-09-03 12:15:21', '2021-09-03 12:15:21', '0');
+
 
 --
 -- Dumping data for table `tabel_inv_category`
