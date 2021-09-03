@@ -20,5 +20,5 @@ $router->get('/', function () use ($router) {
 
 $router->group(['prefix'=>'api/v1'], function() use($router){
 
-    $router->get('/getreferralcodedata', 'Apiv1Controller@getReferralCode');
+    $router->get('/getreferralcodedata/{refcode}', 'Apiv1Controller@getReferralCode');
 });
