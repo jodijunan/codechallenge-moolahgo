@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Moolahgo Code Challenge</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+
+	<style>
+		.not-allowed{
+			cursor: not-allowed! important;
+			background: grey;
+		}
+
+		@media only screen and (max-width: 620px) {
+            /* For mobile phones: */
+            .menu, .main, .right {
+                width: 100%;
+            }
+        }
+		
+		.loader {
+			border: 16px solid #f3f3f3;
+			border-radius: 50%;
+			border-top: 16px solid #3498db;
+			width: 120px;
+			height: 120px;
+			-webkit-animation: spin 2s linear infinite; /* Safari */
+			animation: spin 2s linear infinite;
+		}
+
+		/* Safari */
+		@-webkit-keyframes spin {
+			0% { -webkit-transform: rotate(0deg); }
+			100% { -webkit-transform: rotate(360deg); }
+			}
+
+			@keyframes spin {
+			0% { transform: rotate(0deg); }
+			100% { transform: rotate(360deg); }
+		}
+	</style>
+<!--===============================================================================================-->
+</head>
+<body>
+	<div class="limiter">
+		<div class="container-login100">
+			<div id="sContent" class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt style="padding-top: 90px;">
+					<img src="images/img-02.png" alt="IMG">
+				</div>
+
+				<form id="referralForm" class="login100-form validate-form">
+					<span class="login100-form-title">
+						Check your referral code here
+					</span>					
+
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<input id="irefferalCode" form="referralForm" class="input100" type="text" name="irefferalCode" placeholder="Enter Your Referral Code" minlength="6" maxlength="6" style="padding-left: 30px;">
+						<span class="focus-input100"></span>						
+					</div>
+					
+					<div class="container-login100-form-btn">
+						<button id="btnSubmit" form="referralForm" type="submit" class="login100-form-btn not-allowed" disabled>
+							Submit
+						</button>
+					</div>
+					
+					<div class="text-center p-t-136">
+						<a class="txt2" href="#">
+							<p>
+								<a href="https://www.moolahgo.com/" style="color: green;">moolahgo</a> code challenge,
+								<span style="white-space: nowrap;">by <a href="#" style="color: green;">Satya Tamtomo</a></span>
+							</p>							
+						</a>
+					</div>
+				</form>
+			</div>
+
+			<div id="rContent" hidden class="wrap-login100" style="padding-top: 33px; padding-left: 33px; padding-right: 33px;">
+				<div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">Referral Code :</h5>
+                        </div>
+                        <div class="panel-body" style="margin-top: 20px;">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="bs-example" data-example-id="simple-horizontal-form">
+                                        <div class="form-group">
+                                            <label class="col-sm-1 col-md-1 control-label">
+                                                Name
+                                            </label>                                 
+                                            <label class="col-sm-6 col-md-6 control-label">
+                                                test
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-1 col-md-1 control-label">
+                                                Email
+                                            </label>
+                                            <label class="col-sm-6 col-md-6 control-label">
+                                                test
+                                            </label>    
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="bs-example" data-example-id="bordered-table">
+                                        <table class="table table-bordered table-responsive">
+                                          <thead>
+                                            <tr>
+                                              <th>#</th>
+                                              <th>Product Code</th>
+                                              <th>Product Name</th>
+                                              <th>Category</th>
+                                              <th>UOM</th>
+                                              <th>Cost</th>
+                                              <th>Price</th>
+                                              <th>Qty</th>                                    
+                                              <th>Date Created</th>                                    
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            <tr>
+                                              <th scope="row">1</th>
+                                              <td></td>
+                                              <td></td>
+                                              <td></td>
+                                              <td></td>
+                                              <td></td>
+                                              <td></td>
+                                              <td></td>
+                                              <td></td>
+                                            </tr>                                    
+                                          </tbody>
+                                        </table>
+                                      </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer text-right">
+                            <button class="btn btn-warning">Logout</button>
+                        </div>
+                    </div>                                       
+                </div>
+			</div>
+		</div>
+	</div>
+<!--===============================================================================================-->	
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="vendor/jquery/jquery.validate.js"></script> 
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/tilt/tilt.jquery.min.js"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+<!--=======================================Custom Script==============================================-->	
+	<script type="text/javascript">
+		$(document).ready(function(){			
+			// Validator Referral Code Input			
+			$.validator.addMethod("referalcodeallowed", function(value, element) {
+				return this.optional(element) || /^[A-Z0-9]+$/i.test(value);
+			}, "Referral Code must contain only letters or numbers."); 
+
+			// Form Validation
+			var validator = $('#referralForm').validate({
+				rules: {
+					irefferalCode: {
+						required : true,
+						referalcodeallowed : true,
+					},
+				},
+				messages: {
+					irefferalCode: {
+						required: "Referral Code cannot be empty"
+					}
+				}
+			});
+
+			$('#irefferalCode').on('keyup', function(){				
+				this.value = this.value.toUpperCase();
+				let fvalidate = $('#referralForm').validate().form();		
+				if(fvalidate == true){
+					$('#btnSubmit').removeClass('not-allowed');
+					$('#btnSubmit').removeAttr('disabled');
+				} else {
+					$('#btnSubmit').addClass('not-allowed');
+					$('#btnSubmit').attr('disabled', true);
+					$('#irefferalCode-error').css({"color":"red", "font-size":"12px", "margin-left":"18px"});
+				}
+
+			});
+
+			$('#referralForm').submit(function(e){
+				e.preventDefault();						
+				let fvalidate = $('#referralForm').validate().form();		
+				if(fvalidate == true){
+					console.log('ajax process');
+				} else {
+					console.log('error');						
+					$('#irefferalCode-error').css({"color":"red", "font-size":"12px", "margin-left":"18px"});
+				}
+			});
+		});
+	</script>
+
+</body>
+</html>
