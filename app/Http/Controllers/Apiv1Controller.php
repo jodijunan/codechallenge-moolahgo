@@ -32,6 +32,8 @@ class Apiv1Controller extends Controller
                                     JOIN tabel_inv_category f ON f.id = e.category   
                                     JOIN tabel_inv_uom g ON g.id = e.uom                                         
                                     WHERE a.code = '$refcode'");
+                                    
+        // Referral Code use to search product information about category, uom, where products register at warehouse, and users have warehouse of products
         return response()->json($results);
 	}
 }
