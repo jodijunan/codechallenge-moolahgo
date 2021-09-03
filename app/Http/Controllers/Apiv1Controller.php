@@ -25,13 +25,13 @@ class Apiv1Controller extends Controller
     public function getReferralCode($refcode)
 	{
         $results = app('db')->select("SELECT * FROM tabel_inv_referralcode a
-                                    JOIN tabel_inv_users b ON a.user_id = b.id 
-                                    JOIN tabel_inv_warehouses c ON a.warehouse_id = c.id 
+                                   LEFT JOIN tabel_inv_users b ON b.id = a.user_id  
+                                   LEFT JOIN tabel_inv_warehouses c ON c.id = a.warehouse_id
                                     JOIN tabel_inv_warehouses_products d ON a.warehouse_id = d.warehouse_id 
-                                    JOIN tabel_inv_products e ON d.product_id = e.id     
-                                    JOIN tabel_inv_category f ON e.category = f.id    
-                                    JOIN tabel_inv_uom g ON f.uom = g.id                              
-                                    WHERE $refcode");
+                                    JOIN tabel_inv_products e ON e.id = d.product_id   
+                                    JOIN tabel_inv_category f ON f.id = e.category   
+                                    JOIN tabel_inv_uom g ON g.id = e.uom                                         
+                                    WHERE a.code = '$refcode'");
         return response()->json($results);
 	}
 }
