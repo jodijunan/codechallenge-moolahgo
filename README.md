@@ -1,4 +1,9 @@
 # codechallenge-moolahgo
+
+Applicant: Muhammad Andika Syaputra dikahasyim@gmail.com
+--------------------------------------------------------
+
+
 The Task
 --------
 There are 2 parts to the task.
