@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/codechallenge-moolahgo';
+$config['base_url'] = 'https://unpretty-clearances.000webhostapp.com/';
 $config['app_name'] = 'Referral Code Checker';
 $config['author'] = 'Muhammad Andika Syaputra';
 $config['loading'] = '<div class="spinner-border text-light" role="status"><span class="sr-only">Loading...</span></div>';

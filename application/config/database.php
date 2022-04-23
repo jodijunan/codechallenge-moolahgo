@@ -76,9 +76,9 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'moolahgo',
+	'username' => 'id18829135_moolahgo_db',
+	'password' => 'Ik3g@*n%Je=RSGf_',
+	'database' => 'id18829135_moolahgo',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
