@@ -19,7 +19,7 @@ class ApiKeyMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if ($request->header('x-api-Key') != env('APP_KEY')) {
+        if ($request->header('x-api-key') != env('APP_KEY')) {
             $return['code'] = 1;
             $return['message'] = 'Unauthorized';
             $return['error_message'] = 'Error, API KEY or SECRET KEY Header not found';
