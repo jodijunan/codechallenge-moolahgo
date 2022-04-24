@@ -1,0 +1,14 @@
+/vendor
+/.idea
+Homestead.json
+Homestead.yaml
+.env
+
+/permision.sh
+/.env.testing
+/.phpunit.result.cache
+/_ide_helper.php
+/_ide_helper_models.php
+/.composer/cache
+/.composer/.htaccess
+/.ash_history

@@ -1,0 +1,136 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Malik Al Ichsan <malik.ichsan@gmail.com>
+ */
+
+namespace App\Repositories;
+
+use App\Exceptions\ModelNotFoundException;
+use App\Models\Product;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
+
+class ProductRepository extends RepositoryEloquent
+{
+    /**
+     * @return mixed
+     */
+    public function model()
+    {
+        return Product::class;
+    }
+
+    public function create(array $data): Model
+    {
+        $attributes = [];
+        $attributes['name'] = $data['name'];
+        $attributes['product_name'] = $data['product_name'];
+        $attributes['coverage_range_minimum'] = $data['coverage_range_minimum'];
+        $attributes['coverage_range_maximum'] = $data['coverage_range_maximum'];
+        $result = Product::create($attributes);
+        return $result;
+    }
+
+    public function update(array $data, int $id): Model
+    {
+        try {
+            $result = $this->__withTrashedFind($id);
+            $result->update($data);
+            return $result;
+        } catch (ModelNotFoundException $e) {
+            throw new ModelNotFoundException;
+        }
+    }
+
+    public function updateBy(string $field, string $value, array $data): Model
+    {
+        try {
+            $data = $this->findBy($field, $value)->get();
+            $data->update($data);
+            return $data;
+        } catch (ModelNotFoundException $e) {
+            throw new ModelNotFoundException;
+        }
+    }
+
+    public function delete(int $id)
+    {
+        try {
+            $result = $this->find($id);
+            $result->delete($id);
+            return $result;
+        } catch (ModelNotFoundException $e) {
+            throw new ModelNotFoundException;
+        }
+    }
+
+    public function __forceDelete(int $id)
+    {
+        try {
+            $result = $this->find($id)->forceDelete();
+            return $result;
+        } catch (ModelNotFoundException $e) {
+            throw new ModelNotFoundException;
+        }
+    }
+
+    public function find(int $id, $columns = array('*')): Model
+    {
+        try {
+            $data = Product::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            throw new ModelNotFoundException;
+        }
+
+        return $data;
+    }
+
+    public function __withTrashedFind(int $id, $columns = array('*')): Model
+    {
+        try {
+            $data = Product::withTrashed()->findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            throw new ModelNotFoundException;
+        }
+
+        return $data;
+    }
+
+    public function findBy(string $field, string $value, $columns = ['*']): Builder
+    {
+        try {
+            $data = Product::where($field, $value);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            throw new ModelNotFoundException;
+        }
+        return $data;
+    }
+
+    public function changeStatusPublish(int $id, $isPublish = false)
+    {
+        try {
+            $query = Product::where('id', $id)->withTrashed();
+            if ($isPublish) {
+                return $query->restore();
+            } else {
+                return $query->delete();
+            }
+        } catch (\Throwable $th) {
+            throw new ModelNotFoundException;
+            return false;
+        }
+    }
+
+    public function all(array $columns = ['*']): Collection
+    {
+        // TODO: Implement all() method.
+    }
+
+    public function paginate(int $perPage = 15, $columns = ['*'])
+    {
+        // TODO: Implement paginate() method.
+    }
+}
