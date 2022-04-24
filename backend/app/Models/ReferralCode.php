@@ -12,7 +12,7 @@ class ReferralCode extends Model
     private $referralCodes = [
         [
             'referral_id' => '1',
-            'referral_code' => 'CECC53O',
+            'referral_code' => 'CECC53',
             'benefit_balance' => 15,
             'benefit_currency' => 'SGD',
         ],

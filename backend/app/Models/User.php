@@ -48,7 +48,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
             'surname' => 'Bret',
             'fullname' => 'Leanne Graham',
             'title' => 'Mr.',
-            'referral_code' => 'CECC53O',
+            'referral_code' => 'CECC53',
             'register_by' => 'EMAIL',
             'email' => 'sincere@april.biz',
             'phone_number' => '1-770-736-8031 x56442',

@@ -6,6 +6,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\Uppercase;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\JsonResponse;
 
@@ -45,7 +46,7 @@ class ProcessRequest extends \Pearl\RequestValidate\RequestAbstract
     public function rules(): array
     {
         return [
-            'referral_code' => 'required',
+            'referral_code' => ['required', 'min:6', 'max:6', 'alpha_num', new Uppercase()]
         ];
     }
 

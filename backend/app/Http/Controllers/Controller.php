@@ -174,12 +174,7 @@ class Controller extends BaseController
         $return['error_message'] = $this->errorMessage;
         $request = Request::createFromGlobals();
         $segments = $request->segments();
-        if ($segments && isset($segments[0]) && $segments[0] == 'v2' && $this->needAuth($request)) {
-            $return['data'] = GeneralHelper::dec_enc(GeneralHelper::ENCRYPT, json_encode($this->data));
-            $return['token'] =  GeneralHelper::getToken();
-        } else {
-            $return['data'] = $this->data;
-        }
+        $return['data'] = $this->data;
         return response()->json($return, $this->httpCode);
     }
 }

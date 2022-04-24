@@ -29,7 +29,7 @@ class ProcessController extends Controller
         if ($user == false) {
             $this->setStatus(false);
             $this->setCode(Response::HTTP_UNPROCESSABLE_ENTITY);
-            $this->setMessage(__('message.not_found'));
+            $this->setMessage('failed');
             $this->setData(null);
         } else {
             $this->setStatus(true);
