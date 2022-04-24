@@ -15,9 +15,9 @@ class ReferralForm extends Component
         $response = Http::withHeaders([
             "Content-Type" =>  "application/json",
             "Accept" =>  "application/json",
-            "x-api-key" =>  "fniewyt893y89hfdnalfa",
+            "x-api-key" =>  env('API_KEY_BACKEND_MOOLAHGO'),
             "x-localization" => "en",
-        ])->post('http://moolah_go_backend:8080/v1/process', [
+        ])->post(env('BACKEND_MOOLAHGO'), [
             'referral_code' => $this->referralCode,
         ]);
 
