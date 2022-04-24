@@ -1,0 +1,38 @@
+version: '3'
+services:
+  moolah_go_backend:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: moolah_go_backend
+    restart: unless-stopped
+    environment:
+      - VIRTUAL_HOST=moolah-go-backend.test # add virtual host
+      - VIRTUAL_PORT=8080 # add virtual host
+      - TZ=Asia/Jakarta
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "8095:8080"
+    expose:
+      - "8000" # add virtual host
+    networks:
+      - dbMoolahgo
+
+  moolah_go_redis:
+    build:
+      context: .
+      dockerfile: ./.docker/scripts/DockerRedis
+    container_name: moolah_go_redis
+    environment:
+      - REDIS_PASSWORD=password123
+    volumes:
+      - /Users/malikalichsan/Code/Other/malik_redis/db/db-redis-data:/bitnami
+    networks:
+      - dbMoolahgo
+
+networks:
+  dbMoolahgo:
+    external:
+      name: dbMoolahgo
+

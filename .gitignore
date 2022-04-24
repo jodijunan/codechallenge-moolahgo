@@ -1,0 +1,15 @@
+/backend/vendor
+/.idea
+/backend/.idea
+Homestead.json
+Homestead.yaml
+.env
+
+/backend/permision.sh
+/backend/.env.testing
+/backend/.phpunit.result.cache
+/backend/_ide_helper.php
+/backend/_ide_helper_models.php
+/backend/.composer/cache
+/backend/.composer/.htaccess
+/backend/.ash_history

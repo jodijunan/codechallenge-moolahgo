@@ -1,0 +1,51 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Malik Al Ichsan <malik.al.ichsan@gmail.com>
+ */
+
+namespace App\Rules;
+
+use App\Models\MemberModel;
+use App\Repositories\Classes\MemberDeviceRepository;
+use Illuminate\Contracts\Validation\ImplicitRule;
+use Illuminate\Support\Facades\Request;
+
+class ExampleRule implements ImplicitRule
+{
+    private $code = 'MEM92';
+
+    /**
+     * @inheritDoc
+     */
+    public function passes($attribute, $value)
+    {
+        if (is_array($value)) {
+            $key = $value['key'];
+            $value = $value['value'];
+        } else {
+            $key = $attribute;
+        }
+        $member = Request::input("memberPimcore");
+        if ($member instanceof MemberModel) {
+            // TODO: Implement passes() method.
+            $memberDevices = new MemberDeviceRepository();
+
+            $memberDevices = $memberDevices->findBy($key, $value);
+            $data = $memberDevices->where("member__id", "=", $member->getId());
+            if ($data->count() > 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function message()
+    {
+        // TODO: Implement message() method.
+        return 'Router is not belongs to this member';
+    }
+}
