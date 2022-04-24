@@ -9,7 +9,7 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\JsonResponse;
 
-class ProcessRequest extends RequestAbstract
+class ProcessRequest extends \Pearl\RequestValidate\RequestAbstract
 {
     public $code = 422;
 

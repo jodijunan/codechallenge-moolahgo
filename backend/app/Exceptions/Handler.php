@@ -55,7 +55,7 @@ class Handler extends BaseHandler
      */
     public function render($request, Exception $exception)
     {
-        dd($exception);
+//        dd($exception);
         $message = 'Maaf terjadi kesalahan pada sistem.';
         $rendered = parent::render($request, $exception);
         if ($exception instanceof BaseException) {

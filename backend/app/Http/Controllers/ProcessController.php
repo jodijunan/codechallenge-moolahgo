@@ -8,16 +8,23 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProcessRequest;
 use App\Models\User;
+use App\Transformers\UserReferralTransformer;
 use Illuminate\Http\Response;
-use Illuminate\Http\Request;
 
 class ProcessController extends Controller
 {
+    public $user;
+
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
+
     public function show(ProcessRequest $request)
     {
-        dd('referralcode', $request->get('referral_code'), $request->all(), $request->referral_code);
-        $user = new User();
-        $user = $user->getUsersReferral($request->get('referral_code'));
+        $user = $this->user->getUsersReferral($request->get('referral_code'));
+
+        $response = $this->item($user, new UserReferralTransformer());
 
         if ($user == false) {
             $this->setStatus(false);
@@ -28,7 +35,7 @@ class ProcessController extends Controller
             $this->setStatus(true);
             $this->setCode(Response::HTTP_OK);
             $this->setMessage(__('message.success'));
-            $this->setData($user);
+            $this->setData($response);
         }
 
         return $this->getReturn();
