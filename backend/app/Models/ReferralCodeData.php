@@ -8,27 +8,6 @@ namespace App\Models;
 
 class ReferralCodeData
 {
-    /**
-     * How to generate referral code data ?
-     * Run this code below
-     *
-     *
-        $faker = \Faker\Factory::create();
-        for ($i=1; $i < 20; $i++) {
-            $permitted_chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            $first = substr(str_shuffle($permitted_chars), 0, 3);
-            $second = substr(str_shuffle($permitted_chars), 0, 3);
-            $promoCodeBulkPurchase = $first . $second;
-
-            $referralCode[] = [
-            'referral_id' => $i,
-            'referral_code' => $promoCodeBulkPurchase,
-            'benefit_balance' => 15,
-            'benefit_currency' => 'SGD',
-            ];
-        }
-     */
-
     public function __invoke()
     {
         return [

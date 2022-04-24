@@ -8,30 +8,6 @@ namespace App\Models;
 
 class UserData
 {
-    /**
-     * How to generate users data ?
-     * Run this code below
-     *
-     *
-        $faker = \Faker\Factory::create();
-        for ($i=10; $i < 20; $i++) {
-            $permitted_chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            $first = substr(str_shuffle($permitted_chars), 0, 3);
-            $second = substr(str_shuffle($permitted_chars), 0, 3);
-            $promoCodeBulkPurchase = $first . $second;
-            $users[] = [
-            'user_id' => $i,
-            'given_name' => $faker->name,
-            'surname' => $faker->firstName,
-            'fullname' => $faker->firstName . ' ' . $faker->lastName,
-            'title' => $faker->title,
-            'referral_code' => $promoCodeBulkPurchase,
-            'register_by' => 'EMAIL',
-            'email' => $faker->email,
-            'phone_number' => $faker->phoneNumber,
-            ];
-        }
-     */
     public function __invoke()
     {
         return [

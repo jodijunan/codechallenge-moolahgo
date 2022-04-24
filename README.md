@@ -1,3 +1,8 @@
+# TO SETUP BACKEND - SEE BACKEND DOC
+- [Backend Readme](backend/readme.md)
+
+--------
+
 # codechallenge-moolahgo
 The Task
 --------
