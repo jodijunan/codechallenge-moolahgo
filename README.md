@@ -69,19 +69,12 @@ EFGH
 IJKL
 ```
 
+
 ## SQL Query for retrieving user details
 ```sh
 select u.*,  rc.code as referralcode
 from users u 
 left join owners o on o.user_id = u.id
 left join referral_codes rc on rc.owner_id = o.id
-where rc.code = 'ABCD';
-```
-Query result:
-```sh
-+----+-----------+----------+------------------------+---------------------+---------------------+--------------+
-| id | firstname | lastname | email                  | created_at          | updated_at          | referralcode |
-+----+-----------+----------+------------------------+---------------------+---------------------+--------------+
-|  1 | John      | Doe      | Ysxx1m8d4G@yopmail.com | 2022-05-30 08:57:52 | 2022-05-30 08:57:52 | ABCD         |
-+----+-----------+----------+------------------------+---------------------+---------------------+--------------+
+where rc.code = 'ABCD'
 ```
