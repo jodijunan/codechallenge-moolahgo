@@ -1,44 +1,87 @@
-# codechallenge-moolahgo
-The Task
---------
-There are 2 parts to the task.
-1. To write a micro service using PHP (vanilla PHP, CI or Lumen only).
-2. To write a simple mobile responsive web client to consume the micro service.
+# Referral Code Rest API Project
 
-The Micro Service
------------------
-The micro service will have 1 REST endpoint, /process. It will take a json value and process it. It will return the result in json as well.
-The json will contain the following info: referralcode.
+## Setup Instructions
 
-What the "process" endpoint do is to find the owner of the referralcode and return the detail of the owner. In real application, this owner detail will be stored in a db table. However, for this challenge, please create a model with a pre-populated value. Please put a code in comment on how to do that in sql as well. 
+1. Initiate docker compose
+    ```sh
+    $ docker-compose up
+    ```
 
-The Web Client
---------------
-You will create a MOBILE RESPONSIVE web form for user to key in a referral code. This input is required and the referral code should be 6 characters, only contain alphanumeric, all in upper case.
+2. Then enter into app container
+    ```sh
+    $ docker exec -it referralcode_main_1 sh
+    ```
 
-There will be a submit button that is automatically enable/disable based on whether the mandatory fields are populated and valid.
+3. In the app container execute command below for creating db schema and relationship 
+    ```sh
+    $ php artisan migrate
+    ```
+4. Then still in the app container execute command below for seeding database
+    ```sh
+    $ php artisan db:seed --class=UsersTableSeeder
+    $ php artisan db:seed --class=OwnersTableSeeder
+    $ php artisan db:seed --class=ReferralCodesTableSeeder
+    ```
 
-When user submit the form, display a wait icon, submit using ajax to the microservice, and then display the result.
+5. Then the API ready to use by using postman or curl in terminal as follows:
+    ```sh
+    curl --location --request GET 'http://localhost:8000/api/process' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "referralcode": "ABCD"
+    }'
+    ```
+    API response:
+    ```sh
+    {
+        "status": "Success",
+        "message": null,
+        "data": {
+            "user": {
+                "id": 1,
+                "firstname": "John",
+                "lastname": "Doe",
+                "email": "Ysxx1m8d4G@yopmail.com",
+                "created_at": "2022-05-30T08:57:52.000000Z",
+                "updated_at": "2022-05-30T08:57:52.000000Z"
+            },
+            "owner": {
+                "id": 1,
+                "created_at": "2022-05-30T08:58:59.000000Z",
+                "updated_at": "2022-05-30T08:58:59.000000Z",
+                "user_id": 1
+            },
+            "referralcode": {
+                "id": 2,
+                "code": "ABCD",
+                "created_at": "2022-05-30T08:59:11.000000Z",
+                "updated_at": "2022-05-30T08:59:11.000000Z",
+                "owner_id": 1
+            }
+        }
+    }
+    ```
 
-The Process
------------
-- Create a branch from this repository.
-- Do all your work, make sure they run correctly in your own environment.
-- Push your final work and create a pull request.
-- If possible please provide us a link so that we can test your work.
-- Otherwise, let us know how to setup your work so that we test it in our own workspace.
+## Pre-populated referral code data
+```sh
+ABCD
+EFGH
+IJKL
+```
 
-What We Are Looking For In This Test
-------------------------------------
-- Logic, thought process and the ability to pick up new things to complete a job.
-- Completeness. We want to see that you are able to get to the final result at the same time covering all the possible edge cases and error checking.
-- Simplicity. We want simple codes so maintenance is not a nightmare. This application description maybe long, but the code is simple. There are many libraries out there to help you do the job. Use them.
-
-Hints and Suggestions (optional)
---------------------------------
-You can safely skip this part.
-
-If mobile responsiveness, data binding, or ajax are new to you, below are some suggested library you can look into to help you:
-- Twitter bootstrap (https://getbootstrap.com/) - for mobile responsive
-- Vue (https://vuejs.org/) - for data binding, error checking and ajax
-- Jquery (https://jquery.com/) - for data binding, error checking and ajax
+## SQL Query for retrieving user details
+```sh
+select u.*,  rc.code as referralcode
+from users u 
+left join owners o on o.user_id = u.id
+left join referral_codes rc on rc.owner_id = o.id
+where rc.code = 'ABCD'
+```
+Query result:
+```sh
++----+-----------+----------+------------------------+---------------------+---------------------+--------------+
+| id | firstname | lastname | email                  | created_at          | updated_at          | referralcode |
++----+-----------+----------+------------------------+---------------------+---------------------+--------------+
+|  1 | John      | Doe      | Ysxx1m8d4G@yopmail.com | 2022-05-30 08:57:52 | 2022-05-30 08:57:52 | ABCD         |
++----+-----------+----------+------------------------+---------------------+---------------------+--------------+
+```
